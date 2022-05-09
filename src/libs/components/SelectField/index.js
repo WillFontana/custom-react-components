@@ -1,8 +1,10 @@
+import PropTypes from "prop-types";
 import React, { useState } from "react";
 import StyledTextField from "../TextField/styles";
 import StyledAutoComplete from "./styles";
 
 function Autocomplete({
+  disabled,
   error,
   errorLabel,
   handleChange,
@@ -24,13 +26,14 @@ function Autocomplete({
   return (
     <StyledAutoComplete
       autoHighlight
+      disabled={disabled}
       disableCloseOnSelect={multiple}
       disablePortal
       getOptionLabel={(option) => option.label || ""}
       inputValue={inputValue}
       multiple={multiple}
       name={name}
-      noOptionsText={noOptionsText ? noOptionsText : "Nenhuma Opção"}
+      noOptionsText={noOptionsText}
       onChange={(event, newValue) => {
         setValue(newValue);
         if (onChange) {
@@ -63,5 +66,32 @@ function Autocomplete({
     />
   );
 }
+
+Autocomplete.defaultProps = {
+  disabled: false,
+  error: false,
+  errorLabel: "",
+  handleChange: null,
+  handleInputChange: null,
+  onInputChange: null,
+  onChange: null,
+  multiple: false,
+  noOptionsText: "Nenhuma opção válida",
+};
+
+Autocomplete.propTypes = {
+  disabled: PropTypes.bool,
+  error: PropTypes.bool,
+  errorLabel: PropTypes.string,
+  handleChange: PropTypes.func,
+  handleInputChange: PropTypes.func,
+  label: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func,
+  onChange: PropTypes.func,
+  options: PropTypes.array.isRequired,
+  multiple: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  noOptionsText: PropTypes.string,
+};
 
 export default Autocomplete;
