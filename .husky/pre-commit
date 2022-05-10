@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+yarn lint
+# Adicionar yarn text:win para windows
+# Adicionar yarn text:linux para linux

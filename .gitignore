@@ -11,9 +11,6 @@
 # production
 /build
 
-# precommit
-.husky
-
 # misc
 .DS_Store
 .env.local
