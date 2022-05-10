@@ -12,7 +12,7 @@ test('Render Text With Props', () => {
         size="subheading"
         weight="normal"
       >
-        Texto primário
+        Primary Text
       </Typography>
       <Typography
         variant="span"
@@ -21,13 +21,13 @@ test('Render Text With Props', () => {
         size="body2"
         weight="light"
       >
-        Texto normal
+        Normal Text
       </Typography>
     </CustomThemeProvider>
   );
 
-  const coloredTextContent = screen.getByText('Texto primário');
-  const textContent = screen.getByText('Texto normal');
+  const coloredTextContent = screen.getByText('Primary Text');
+  const textContent = screen.getByText('Normal Text');
 
   expect(coloredTextContent).toBeInTheDocument();
   expect(textContent).toBeInTheDocument();

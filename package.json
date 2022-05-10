@@ -27,15 +27,17 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "check:tests": "node checkTests.js",
     "test:watch": "react-scripts test",
     "test:lin": "CI=true react-scripts test",
     "test:win": "set CI=true && yarn test:watch",
-    "eject": "react-scripts eject",
     "lint": "eslint src --max-warnings=0",
     "lint:fix": "eslint --fix src --max-warnings=0",
-    "cleanInstall:linux": "rm -rf node_modules || true && rm yarn.lock || true && yarn install",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cleanInstall:linux": "rm -rf node_modules || true && rm yarn.lock || true && yarn install",
+    "cleanInstall:windows": "rmdir /s/q node_modules || true && del yarn.lock || true && yarn install"
   },
   "eslintConfig": {
     "extends": [
