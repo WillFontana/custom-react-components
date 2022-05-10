@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react";
-import Button from ".";
-import CustomThemeProvider from "../ProvideTheme";
+import { render, screen } from '@testing-library/react';
+import Button from '.';
+import CustomThemeProvider from '../ProvideTheme';
 
-test("Renders default and custom button", () => {
+test('Renders default and custom button', () => {
   render(
     <CustomThemeProvider>
       <Button
@@ -10,7 +10,12 @@ test("Renders default and custom button", () => {
         severity="error"
         size="large"
         type="floating"
-        anchor={{ top: "20px", left: 0, right: 0, bottom: "100%" }}
+        anchor={{
+          top: '20px',
+          left: 0,
+          right: 0,
+          bottom: '100%',
+        }}
       >
         Customized Button
       </Button>
@@ -44,16 +49,16 @@ test("Renders default and custom button", () => {
   `);
 });
 
-test("Renders loading and disabled button", () => {
+test('Renders loading and disabled button', () => {
   render(
     <CustomThemeProvider>
-      <Button loading={true} loadingText="Carregando Aguarde">
+      <Button loading loadingText="Carregando Aguarde">
         Primary Button
       </Button>
     </CustomThemeProvider>
   );
   const buttonContent = screen.getByText(/Carregando Aguarde/i);
-  const progressIcon = screen.getByRole("progressbar");
+  const progressIcon = screen.getByRole('progressbar');
 
   expect(buttonContent).toBeDisabled();
   expect(buttonContent).toBeInTheDocument();

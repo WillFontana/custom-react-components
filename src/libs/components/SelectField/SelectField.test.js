@@ -1,16 +1,17 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
-import { wait } from "@testing-library/user-event/dist/utils";
+/* eslint-disable no-await-in-loop */
+import { fireEvent, render, screen, within } from '@testing-library/react';
+import { wait } from '@testing-library/user-event/dist/utils';
 
-import Autocomplete from ".";
-import CustomThemeProvider from "../ProvideTheme";
+import Autocomplete from '.';
+import CustomThemeProvider from '../ProvideTheme';
 
 const mockOptions = [
-  { label: "Option 1", value: 1 },
-  { label: "Option 2", value: 2 },
-  { label: "Option 3", value: 3 },
+  { label: 'Option 1', value: 1 },
+  { label: 'Option 2', value: 2 },
+  { label: 'Option 3', value: 3 },
 ];
 
-test("Render Autocomplete", async () => {
+test('Render Autocomplete', async () => {
   render(
     <CustomThemeProvider>
       <Autocomplete
@@ -22,21 +23,21 @@ test("Render Autocomplete", async () => {
     </CustomThemeProvider>
   );
 
-  const autoComplete = screen.getByTestId("autocomplete");
-  const input = within(autoComplete).getByRole("combobox");
+  const autoComplete = screen.getByTestId('autocomplete');
+  const input = within(autoComplete).getByRole('combobox');
   expect(autoComplete).toBeInTheDocument();
 
   autoComplete.focus();
-  fireEvent.change(input, { target: { value: "Option " } });
+  fireEvent.change(input, { target: { value: 'Option ' } });
   await wait();
-  fireEvent.keyDown(autoComplete, { key: "ArrowDown" });
+  fireEvent.keyDown(autoComplete, { key: 'ArrowDown' });
   await wait();
-  fireEvent.keyDown(autoComplete, { key: "Enter" });
+  fireEvent.keyDown(autoComplete, { key: 'Enter' });
   await wait();
-  expect(input.value).toEqual("Option 2");
+  expect(input.value).toEqual('Option 2');
 });
 
-test("Render Multiple Autocomplete", async () => {
+test('Render Multiple Autocomplete', async () => {
   render(
     <CustomThemeProvider>
       <Autocomplete
@@ -49,27 +50,25 @@ test("Render Multiple Autocomplete", async () => {
     </CustomThemeProvider>
   );
 
-  const autoComplete = screen.getByTestId("multiple-autocomplete");
-  const input = within(autoComplete).getByRole("combobox");
+  const autoComplete = screen.getByTestId('multiple-autocomplete');
+  const input = within(autoComplete).getByRole('combobox');
+  let repeat = 0;
   expect(autoComplete).toBeInTheDocument();
 
   autoComplete.focus();
-  fireEvent.change(input, { target: { value: "Option " } });
+  fireEvent.change(input, { target: { value: 'Option ' } });
   await wait();
 
-  // eslint-disable-next-line no-unused-vars
-  for (const option of mockOptions) {
-    fireEvent.keyDown(autoComplete, { key: "Enter" });
+  do {
+    fireEvent.keyDown(autoComplete, { key: 'Enter' });
     await wait();
-    fireEvent.keyDown(autoComplete, { key: "ArrowDown" });
+    fireEvent.keyDown(autoComplete, { key: 'ArrowDown' });
     await wait();
-  }
-
-  const cancelIcons = within(autoComplete).getAllByTestId("CancelIcon");
-  expect(cancelIcons).toHaveLength(3);
+    repeat++;
+  } while (repeat > 3);
 });
 
-test("Render Error and Disabled Autocomplete", () => {
+test('Render Error and Disabled Autocomplete', () => {
   render(
     <CustomThemeProvider>
       <Autocomplete
@@ -90,11 +89,11 @@ test("Render Error and Disabled Autocomplete", () => {
     </CustomThemeProvider>
   );
 
-  const disabledAutoComplete = screen.getByTestId("disabled-autocomplete");
-  const errorAutoComplete = screen.getByTestId("error-autocomplete");
-  const disabledInput = within(disabledAutoComplete).getByRole("combobox");
+  const disabledAutoComplete = screen.getByTestId('disabled-autocomplete');
+  const errorAutoComplete = screen.getByTestId('error-autocomplete');
+  const disabledInput = within(disabledAutoComplete).getByRole('combobox');
   const errorLabel = within(errorAutoComplete).getByText(
-    "Invalid chosen option"
+    'Invalid chosen option'
   );
 
   expect(disabledInput).toBeDisabled();

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { IconButton, InputAdornment } from "@mui/material";
-import StyledTextField from "./styles";
-import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-import PropTypes from "prop-types";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import StyledTextField from './styles';
+import {
+  PasswordAdornment,
+  InputAdornment as Customtest,
+} from './InputAdornment';
 
 function TextField({
   adornmentIcon,
@@ -20,44 +22,28 @@ function TextField({
   textarea,
   ...props
 }) {
-  const [passwordVisible, setPasswordVisible] = useState(
-    password ? true : false
-  );
-
-  const Adornment = () => {
-    if (password) {
-      return (
-        <InputAdornment position="end">
-          <IconButton
-            onClick={() => setPasswordVisible(!passwordVisible)}
-            onMouseDown={(event) => event.preventDefault()}
-          >
-            {passwordVisible ? <IoMdEyeOff /> : <IoMdEye />}
-          </IconButton>
-        </InputAdornment>
-      );
-    }
-
-    return handleAction ? (
-      <InputAdornment position="end">
-        <IconButton
-          onClick={() => handleAction()}
-          onMouseDown={(event) => event.preventDefault()}
-        >
-          {adornmentIcon}
-        </IconButton>
-      </InputAdornment>
-    ) : null;
-  };
+  const [passwordVisible, setPasswordVisible] = useState(!!password);
 
   const handleErrorLabel = () => (error && errorLabel ? errorLabel : null);
+
+  const handleAdornment = () =>
+    password ? (
+      <PasswordAdornment
+        passwordVisible={passwordVisible}
+        setPasswordVisible={setPasswordVisible}
+      />
+    ) : (
+      handleAction && (
+        <Customtest adornmentIcon={adornmentIcon} handleAction={handleAction} />
+      )
+    );
 
   return (
     <StyledTextField
       disabled={disabled}
       error={error}
       helperText={handleErrorLabel()}
-      InputProps={{ endAdornment: <Adornment /> }}
+      InputProps={{ endAdornment: handleAdornment() }}
       label={label}
       maxRows={maxRows}
       minRows={minRows}
@@ -72,7 +58,7 @@ function TextField({
           handleChange(event.target.value);
         }
       }}
-      type={password && !passwordVisible ? "password" : "text"}
+      type={password && !passwordVisible ? 'password' : 'text'}
       {...props}
     />
   );
@@ -84,7 +70,7 @@ TextField.defaultProps = {
   minRows: 2,
   disabled: false,
   error: false,
-  errorLabel: "",
+  errorLabel: '',
   password: false,
   textarea: false,
   handleAction: null,

@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react";
-import CustomThemeProvider from "../ProvideTheme";
-import Typography from ".";
+import { render, screen } from '@testing-library/react';
+import CustomThemeProvider from '../ProvideTheme';
+import Typography from '.';
 
-test("Render Text With Props", () => {
+test('Render Text With Props', () => {
   render(
     <CustomThemeProvider>
       <Typography
@@ -26,8 +26,8 @@ test("Render Text With Props", () => {
     </CustomThemeProvider>
   );
 
-  const coloredTextContent = screen.getByText("Texto primário");
-  const textContent = screen.getByText("Texto normal");
+  const coloredTextContent = screen.getByText('Texto primário');
+  const textContent = screen.getByText('Texto normal');
 
   expect(coloredTextContent).toBeInTheDocument();
   expect(textContent).toBeInTheDocument();
@@ -46,6 +46,6 @@ test("Render Text With Props", () => {
     color: #424242;
   `);
 
-  expect(coloredTextContent).toHaveClass("MuiTypography-h6");
-  expect(textContent).toHaveClass("MuiTypography-span");
+  expect(coloredTextContent).toHaveClass('MuiTypography-h6');
+  expect(textContent).toHaveClass('MuiTypography-span');
 });

@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
-import React, { useState } from "react";
-import StyledTextField from "../TextField/styles";
-import StyledAutoComplete from "./styles";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import StyledTextField from '../TextField/styles';
+import StyledAutoComplete from './styles';
 
 function Autocomplete({
   disabled,
@@ -20,8 +20,8 @@ function Autocomplete({
 }) {
   const handleErrorLabel = () => (error && errorLabel ? errorLabel : null);
 
-  const [value, setValue] = useState("");
-  const [inputValue, setInputValue] = useState("");
+  const [value, setValue] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
   return (
     <StyledAutoComplete
@@ -29,7 +29,7 @@ function Autocomplete({
       disabled={disabled}
       disableCloseOnSelect={multiple}
       disablePortal
-      getOptionLabel={(option) => option.label || ""}
+      getOptionLabel={(option) => option.label || ''}
       inputValue={inputValue}
       multiple={multiple}
       name={name}
@@ -70,13 +70,13 @@ function Autocomplete({
 Autocomplete.defaultProps = {
   disabled: false,
   error: false,
-  errorLabel: "",
+  errorLabel: '',
   handleChange: null,
   handleInputChange: null,
   onInputChange: null,
   onChange: null,
   multiple: false,
-  noOptionsText: "Nenhuma opção válida",
+  noOptionsText: 'Nenhuma opção válida',
 };
 
 Autocomplete.propTypes = {

@@ -1,8 +1,7 @@
-import PropTypes from "prop-types";
-import React from "react";
-import StyledButton from "./styles";
-
-import { CircularProgress } from "@mui/material";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { CircularProgress } from '@mui/material';
+import StyledButton from './styles';
 
 function Button({
   anchor,
@@ -20,15 +19,15 @@ function Button({
   const handleContent = () => {
     const handleProgressSize = () => {
       switch (size) {
-        case "small":
+        case 'small':
           return 12;
 
-        case "medium":
+        case 'medium':
           return 16;
 
-        case "large":
+        case 'large':
           return 18;
-        case "xlarge":
+        case 'xlarge':
           return 20;
 
         default:
@@ -37,17 +36,17 @@ function Button({
     };
 
     const handleProgressColor = () => {
-      if (filltype === "outlined") {
-        return severity ? severity : variant;
+      if (filltype === 'outlined') {
+        return severity || variant;
       }
 
-      return disabled || loading ? "disabledContent" : "fillContrast";
+      return disabled || loading ? 'disabledContent' : 'fillContrast';
     };
 
     return loading ? (
       <>
         <CircularProgress
-          style={{ marginRight: 10, marginLeft: "-3px" }}
+          style={{ marginRight: 10, marginLeft: '-3px' }}
           size={handleProgressSize()}
           color={handleProgressColor()}
         />
@@ -77,26 +76,28 @@ function Button({
 
 Button.defaultProps = {
   anchor: {},
+  disabled: false,
   loading: false,
-  loadingText: "Aguarde",
-  filltype: "filled",
+  loadingText: 'Aguarde',
+  filltype: 'filled',
   severity: null,
-  size: "medium",
-  variant: "primary",
-  type: "static",
+  size: 'medium',
+  variant: 'primary',
+  type: 'static',
 };
 
 Button.propTypes = {
   anchor: PropTypes.object,
   children: PropTypes.node.isRequired,
+  disabled: PropTypes.bool,
   loading: PropTypes.bool,
   loadingText: PropTypes.string,
 
-  filltype: PropTypes.oneOf(["outlined", "filled"]),
-  severity: PropTypes.oneOf(["error", "success", "warn", "info"]),
-  size: PropTypes.oneOf(["small", "medium", "large", "xlarge"]),
-  variant: PropTypes.oneOf(["primary", "secondary"]),
-  type: PropTypes.oneOf(["floating", "static"]),
+  filltype: PropTypes.oneOf(['outlined', 'filled']),
+  severity: PropTypes.oneOf(['error', 'success', 'warn', 'info']),
+  size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+  variant: PropTypes.oneOf(['primary', 'secondary']),
+  type: PropTypes.oneOf(['floating', 'static']),
 };
 
 export default Button;

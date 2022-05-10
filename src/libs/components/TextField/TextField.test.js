@@ -1,27 +1,27 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, within } from '@testing-library/react';
 
-import CustomThemeProvider from "../ProvideTheme";
-import TextField from ".";
+import CustomThemeProvider from '../ProvideTheme';
+import TextField from '.';
 
-test("Renders TexField Component", () => {
+test('Renders TexField Component', () => {
   render(
     <CustomThemeProvider>
       <TextField data-testid="textfield" name="textfield" label="Text field" />
     </CustomThemeProvider>
   );
 
-  const inputContainer = screen.getByTestId("textfield");
-  const labelContainer = within(inputContainer).getByLabelText("Text field");
-  const inputComponent = within(inputContainer).getByRole("textbox");
+  const inputContainer = screen.getByTestId('textfield');
+  const labelContainer = within(inputContainer).getByLabelText('Text field');
+  const inputComponent = within(inputContainer).getByRole('textbox');
 
   expect(inputContainer).toBeInTheDocument();
   expect(labelContainer).toBeInTheDocument();
   expect(inputComponent).toBeInTheDocument();
 
-  expect(inputComponent.getAttribute("name")).toBe("textfield");
+  expect(inputComponent.getAttribute('name')).toBe('textfield');
 });
 
-test("Renders disabled TextField Component", () => {
+test('Renders disabled TextField Component', () => {
   render(
     <CustomThemeProvider>
       <TextField
@@ -33,11 +33,11 @@ test("Renders disabled TextField Component", () => {
     </CustomThemeProvider>
   );
 
-  const inputComponent = screen.getByRole("textbox");
+  const inputComponent = screen.getByRole('textbox');
   expect(inputComponent).toBeDisabled();
 });
 
-test("Renders TextField Component With Error", () => {
+test('Renders TextField Component With Error', () => {
   render(
     <CustomThemeProvider>
       <TextField
@@ -50,7 +50,7 @@ test("Renders TextField Component With Error", () => {
     </CustomThemeProvider>
   );
 
-  const errorLabel = screen.getByText("The field contain errors");
+  const errorLabel = screen.getByText('The field contain errors');
   expect(errorLabel).toBeInTheDocument();
   expect(errorLabel).toHaveStyle(`
       color: #d32f2f;

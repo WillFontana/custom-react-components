@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material";
-import styled from "styled-components";
-import { handleTextColorTheme } from "../../../styles/colors";
+import { Typography } from '@mui/material';
+import styled from 'styled-components';
+import { handleTextColorTheme } from '../../../styles/colors';
 
 const StyledTypography = styled(Typography)`
   && {
