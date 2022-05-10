@@ -26,6 +26,9 @@ yarn-error.log*
 yarn.lock
 package-lock.json
 
+# precommit
+.husky
+
 # registry
 .yarnrc
 .npmrc
