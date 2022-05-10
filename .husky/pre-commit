@@ -2,5 +2,6 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 yarn lint
+yarn check:tests
 # Adicionar yarn text:win para windows
 # Adicionar yarn text:linux para linux
