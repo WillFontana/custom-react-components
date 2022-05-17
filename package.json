@@ -2,6 +2,11 @@
   "name": "custom-components",
   "version": "0.1.0",
   "private": true,
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -37,7 +42,8 @@
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "prepare": "husky install",
     "cleanInstall:linux": "rm -rf node_modules || true && rm yarn.lock || true && yarn install",
-    "cleanInstall:windows": "rmdir /s/q node_modules || true && del yarn.lock || true && yarn install"
+    "cleanInstall:windows": "rmdir /s/q node_modules || true && del yarn.lock || true && yarn install",
+    "compile": "rollup -c"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +64,10 @@
     ]
   },
   "devDependencies": {
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-replace": "^4.0.0",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.25.3",
@@ -66,7 +76,8 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^8.0.1",
     "lint-staged": ">=10",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "rollup": "^2.73.0"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",
