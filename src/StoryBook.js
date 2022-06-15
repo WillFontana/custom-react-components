@@ -6,6 +6,7 @@ import Autocomplete from './libs/components/SelectField';
 import TextField from './libs/components/TextField';
 import CustomThemeProvider from './libs/components/ProvideTheme';
 import Button from './libs/components/Button';
+import Stepper from './libs/components/Stepper';
 
 const options = [
   {
@@ -20,6 +21,13 @@ const options = [
     label: 'Opção 3',
     value: 3,
   },
+];
+
+const steps = [
+  { label: 'Primeira Etapa', content: <div>Conteúdo da primeira etapa</div> },
+  { label: 'Segunda Etapa', content: <div>Conteúdo da segunda etapa</div> },
+  { label: 'Terceira Etapa', content: <div>Conteúdo da terceira etapa</div> },
+  { label: 'Quarta Etapa', content: <div>Conteúdo da quarta etapa</div> },
 ];
 
 function StoryBook() {
@@ -47,6 +55,9 @@ function StoryBook() {
         </Grid>
         <Grid item lg={4}>
           <Button size="large">opa</Button>
+        </Grid>
+        <Grid item lg={12}>
+          <Stepper steps={steps} activeStep={1} filledColor="#212121" />
         </Grid>
       </Grid>
     </CustomThemeProvider>
